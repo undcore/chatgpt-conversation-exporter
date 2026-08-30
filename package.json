@@ -1,6 +1,6 @@
 {
   "name": "chatgpt-conversation-exporter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Export the active ChatGPT conversation branch to Markdown from your browser.",
   "private": true,
   "type": "module",
@@ -10,6 +10,6 @@
   "scripts": {
     "build": "node scripts/build-bookmarklet.mjs",
     "test": "node --test",
-    "check": "npm run build && npm test"
+    "check": "npm run build && node --check src/chatgpt-export-to-markdown.js && node --check scripts/build-bookmarklet.mjs && npm test && git diff --check && git diff --exit-code -- dist/chatgpt-export-to-markdown.bookmarklet.txt"
   }
 }

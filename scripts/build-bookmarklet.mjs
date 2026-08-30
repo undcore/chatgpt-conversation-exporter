@@ -10,6 +10,9 @@ const outputPath = path.join(outputDirectory, "chatgpt-export-to-markdown.bookma
 
 export function buildBookmarklet(source) {
   const normalizedSource = source.replace(/\r\n?/g, "\n").trim();
+  if (/\/\/[^\n]*(?:\n|$)/.test(normalizedSource)) {
+    throw new Error("Bookmarklet source cannot contain line comments.");
+  }
   const singleLineSource = normalizedSource.replace(/\n/g, " ");
   return "javascript:" + singleLineSource + "\n";
 }
